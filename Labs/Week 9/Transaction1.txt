@@ -1,0 +1,14 @@
+use SalesOrdersExample;
+set session transaction isolation level read committed;
+set autocommit = false;
+show variables like 'autocommit';
+
+SELECT * FROM Products WHERE ProductNumber=1;
+
+SELECT * FROM Orders WHERE OrderNumber=945;
+
+SELECT * FROM Order_Details WHERE OrderNumber=945;
+
+show variables like 'tx_isolation';
+
+commit;

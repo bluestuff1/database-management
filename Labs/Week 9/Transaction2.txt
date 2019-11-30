@@ -1,0 +1,32 @@
+use SalesOrdersExample;
+set session transaction isolation level read committed;
+set autocommit = false;
+show variables like 'autocommit';
+
+UPDATE Products SET
+QuantityOnHand=
+QuantityOnHand-2
+WHERE ProductNumber=1;
+
+INSERT INTO Orders
+(OrderNumber, OrderDate,
+ShipDate, CustomerID,
+EmployeeID)
+VALUES (945, '2015-09-04',
+'2015-09-05', 1004, 701);
+
+INSERT INTO Order_Details
+(OrderNumber, ProductNumber,
+QuotedPrice,
+QuantityOrdered) VALUES
+(945, 1, 1200.00, 2);
+
+SELECT * FROM Products WHERE ProductNumber=1;
+
+SELECT * FROM Orders WHERE OrderNumber=945;
+
+SELECT * FROM Order_Details WHERE OrderNumber=945;
+
+show variables like 'tx_isolation';
+
+commit;
